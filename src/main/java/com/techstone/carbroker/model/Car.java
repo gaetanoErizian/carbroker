@@ -3,16 +3,16 @@ package com.techstone.carbroker.model;
 import com.techstone.carbroker.model.entities.Age;
 import com.techstone.carbroker.model.entities.FuelType;
 import com.techstone.carbroker.model.entities.PriceRange;
+import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 @Data
 @AllArgsConstructor
