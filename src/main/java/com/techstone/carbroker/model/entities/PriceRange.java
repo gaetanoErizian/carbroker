@@ -3,7 +3,7 @@ package com.techstone.carbroker.model.entities;
 public enum PriceRange {
     UNDER_5K("5k-"),
     BETWEEN_5K_10K("5k10K"),
-    ABOVE_10K("10K+");
+    OVER_10K("10K+");
 
     private final String label;
 
