@@ -1,19 +1,15 @@
 package com.techstone.carbroker.controller;
 
 import com.techstone.carbroker.model.Car;
-import com.techstone.carbroker.model.entities.Age;
-import com.techstone.carbroker.model.entities.FuelType;
-import com.techstone.carbroker.model.entities.PriceRange;
 import com.techstone.carbroker.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
+
+import com.techstone.carbroker.tools.CsvParse;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -29,27 +25,7 @@ public class CarController {
             return ResponseEntity.badRequest().body("Please provide a CSV file.");
         }
 
-        List<Car> cars = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            // Skip the header row
-            String line = br.readLine();
-
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-
-                // Assuming columns are in the order: fourByFour, priceRange, age, automaticTransmission, fuelType
-                Car car = new Car(
-                        Boolean.parseBoolean(values[0]),
-                        PriceRange.valueOf(values[1].toUpperCase()),
-                        Age.valueOf(values[2]),
-                        Boolean.parseBoolean(values[3]),
-                        FuelType.valueOf(values[4].toUpperCase())
-                );
-
-                cars.add(car);
-            }
-        }
+        List<Car> cars = CsvParse.getCarsListFromCsv(file);
 
         carService.saveAll(cars);
 

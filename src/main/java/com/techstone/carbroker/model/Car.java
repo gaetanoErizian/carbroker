@@ -36,7 +36,4 @@ public class Car {
 
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
-
-    public Car(boolean parseBoolean, PriceRange valueOf, Age valueOf1, boolean parseBoolean1, FuelType valueOf2) {
-    }
 }
