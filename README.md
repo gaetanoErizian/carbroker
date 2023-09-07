@@ -72,3 +72,12 @@ Per eseguire test unitari ed integrati:
 
 ```bash
 mvn test
+```
+
+## File CSV di esempio
+
+Un file grezzo .csv di esempio si trova nel package resources
+
+```bash
+src/main/resources/cars.csv
+```
