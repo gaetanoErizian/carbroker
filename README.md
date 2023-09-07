@@ -29,9 +29,8 @@ Un'applicazione Spring Boot per gestire l'acquisto di automobili.
     docker exec -it carbroker-mysql mysql -uroot -p
     ```
 
-   Poi, esegui:
-    ```sql
-    CREATE DATABASE carbroker;
+   Poi, per lanciare il motore database tramite container, esegui:
+    ```docker-compose up -d
     ```
 
 4. **Configurare `application.properties`**:
