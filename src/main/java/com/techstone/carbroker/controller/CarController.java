@@ -1,6 +1,9 @@
 package com.techstone.carbroker.controller;
 
 import com.techstone.carbroker.model.Car;
+import com.techstone.carbroker.model.entities.Age;
+import com.techstone.carbroker.model.entities.FuelType;
+import com.techstone.carbroker.model.entities.PriceRange;
 import com.techstone.carbroker.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +38,18 @@ public class CarController {
     @GetMapping
     public List<Car> getAllCars() {
         return carService.getAllCars();
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<List<Car>> getCarsByFilter(
+            @RequestParam(required = false) Age age,
+            @RequestParam(required = false) FuelType fuelType,
+            @RequestParam(required = false) PriceRange priceRange,
+            @RequestParam(defaultValue = "false") boolean automaticTransmission,
+            @RequestParam(defaultValue = "false") boolean fourByFour) {
+
+        List<Car> cars = carService.findByFilters(age, fuelType, priceRange, automaticTransmission, fourByFour);
+        return ResponseEntity.ok(cars);
     }
 
 }

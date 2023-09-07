@@ -33,30 +33,9 @@ public class CarService {
         return carRepository.saveAll(cars);
     }
 
-    public List<Car> getCarsListFromCsv(MultipartFile file) {
-        List<Car> cars = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            // Skip the header row
-            String line = br.readLine();
-
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-
-                // Assuming columns are in the order: fourByFour, priceRange, age, automaticTransmission, fuelType
-                Car car = new Car();
-                car.setFourByFour(Boolean.parseBoolean(values[0]));
-                car.setPriceRange(PriceRange.valueOf(values[1].toUpperCase()));
-                car.setAge(Age.valueOf(values[2]));
-                car.setAutomaticTransmission(Boolean.parseBoolean(values[3]));
-                car.setFuelType(FuelType.valueOf(values[4].toUpperCase()));
-
-                cars.add(car);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return cars;
+    public List<Car> findByFilters(Age age, FuelType fuelType, PriceRange priceRange,
+                                   boolean automaticTransmission, boolean fourByFour) {
+        return carRepository.findByFilters(age, fuelType, priceRange, automaticTransmission, fourByFour);
     }
 
 }
