@@ -81,3 +81,28 @@ Un file grezzo .csv di esempio si trova nel package resources
 ```bash
 src/main/resources/cars.csv
 ```
+
+## Estrarre auto con filtri
+
+C'è la possibilità di chiamare l'endpoint ```/api/cars/filtered``` e fornire qualsiasi combinazione di parametri per ottenere i risultati filtrati desiderati.
+
+Ecco come potresti usarlo:
+
+Per ottenere tutte le auto di 1 anno con cambio automatico:
+
+``` bash
+/api/cars/filtered?age=ONE&automaticTransmission=true
+```
+
+Per quelle più vecchie a gasolio:
+
+``` bash
+/api/cars/filtered?fuelType=gasolio
+```
+Per quelle con anzianità di 3 anni, fascia di prezzo 5k/10k e cambio automatico:
+
+```bash
+/api/cars/filtered?age=THREE&priceRange=5k10K&automaticTransmission=true
+```
+
+Aggiungere ```&fourByFour=true``` a qualsiasi delle chiamate precedenti se desideri filtrare per 4x4.

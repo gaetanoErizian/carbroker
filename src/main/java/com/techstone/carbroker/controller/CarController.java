@@ -45,8 +45,8 @@ public class CarController {
             @RequestParam(required = false) Age age,
             @RequestParam(required = false) FuelType fuelType,
             @RequestParam(required = false) PriceRange priceRange,
-            @RequestParam(defaultValue = "false") boolean automaticTransmission,
-            @RequestParam(defaultValue = "false") boolean fourByFour) {
+            @RequestParam(required = false, defaultValue = "false") boolean automaticTransmission,
+            @RequestParam(required = false, defaultValue = "false") boolean fourByFour) {
 
         List<Car> cars = carService.findByFilters(age, fuelType, priceRange, automaticTransmission, fourByFour);
         return ResponseEntity.ok(cars);
